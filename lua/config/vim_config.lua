@@ -1,16 +1,16 @@
 -- Tabstop
-local create_autocmd = vim.api.nvim_create_autocmd
-create_autocmd("BufRead", {
-  pattern = "*.cpp,*.hpp,*h",
-  callback = function()
-    vim.cmd("set tabstop=4")
-  end
-})
+-- local create_autocmd = vim.api.nvim_create_autocmd
+-- create_autocmd("BufRead", {
+--   pattern = "*.cpp,*.hpp,*h",
+--   callback = function()
+--     vim.cmd("set tabstop=4")
+--   end
+-- })
 
 -- Indentation and formatting
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.numberwidth = 4
+-- vim.opt.tabstop = 4
+-- vim.opt.shiftwidth = 4
+-- vim.opt.numberwidth = 4
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -56,3 +56,12 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 -- Colorscheme
 vim.cmd.colorscheme 'catppuccin-frappe'
+
+-- Kitties
+local signs = { Error = "🙀", Warn = "😾", Hint = "😺", Info = "😸" }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+vim.api.nvim_set_keymap('n', '<Space>t', ':tabnew<CR>:Telescope find_files<CR>', { noremap = true, silent = true })

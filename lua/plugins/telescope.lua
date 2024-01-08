@@ -20,7 +20,7 @@ return {
     'nvim-telescope/telescope.nvim',
     version = '*',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = { defaults = { file_ignore_patterns = { "node_modules" } } }
+    opts = { defaults = { file_ignore_patterns = { "node_modules", "venv" } } }
   },
   -- {
   --   'nvim-telescope/telescope-fzf-native.nvim',
