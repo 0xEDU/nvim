@@ -89,3 +89,36 @@ vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { de
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
+-- Harpoon keymaps
+local harpoon = require("harpoon")
+local conf = require("telescope.config").values
+
+harpoon:setup({})
+local function toggle_telescope(harpoon_files)
+    local file_paths = {}
+    for _, item in ipairs(harpoon_files.items) do
+        table.insert(file_paths, item.value)
+    end
+
+    require("telescope.pickers").new({}, {
+        prompt_title = "Harpoon",
+        finder = require("telescope.finders").new_table({
+            results = file_paths,
+        }),
+        previewer = conf.file_previewer({}),
+        sorter = conf.generic_sorter({}),
+    }):find()
+end
+
+local function add_file_to_harpoon()
+    require("notify")("Added file to Harpoon")
+    harpoon:list():append()
+end
+
+vim.keymap.set("n", "<C-e>", function() toggle_telescope(harpoon:list()) end,
+    { desc = "Open harpoon window" })
+vim.keymap.set("n", "<leader>.", add_file_to_harpoon, { desc = "Append file to Harpoon"})
+vim.keymap.set("n", "<leader><Tab>", function() harpoon:list():next() end,
+    { desc = "Go to next Harpoon buffer"})
+vim.keymap.set("n", "<leader><S-Tab>", function() harpoon:list():prev() end,
+    { desc = "Go to previous Harpoon buffer "})

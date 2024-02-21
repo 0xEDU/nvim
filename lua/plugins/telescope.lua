@@ -5,6 +5,11 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = { defaults = { file_ignore_patterns = { "node_modules", "venv" } } }
   },
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" }
+  }
   -- {
   --   'nvim-telescope/telescope-fzf-native.nvim',
   --   -- NOTE: If you are having trouble with this installation,

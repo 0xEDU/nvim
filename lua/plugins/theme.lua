@@ -6,7 +6,7 @@ return {
       color_overrides = {
           frappe = {
               base = "#5e5fab",
-               text = "#ffc9dc",
+              text = "#ffc9dc",
               surface2 = "#32358d",
               surface1 = "#8aa1e1",
               surface0 = "#3e3f71",
