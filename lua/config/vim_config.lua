@@ -115,10 +115,19 @@ local function add_file_to_harpoon()
     harpoon:list():append()
 end
 
+local function remove_file_from_harpoon()
+    require("notify")("Removed file to Harpoon")
+    harpoon:list():remove()
+end
+
 vim.keymap.set("n", "<C-e>", function() toggle_telescope(harpoon:list()) end,
     { desc = "Open harpoon window" })
 vim.keymap.set("n", "<leader>.", add_file_to_harpoon, { desc = "Append file to Harpoon"})
+vim.keymap.set("n", "<leader>,", remove_file_from_harpoon, { desc = "Append file to Harpoon"})
 vim.keymap.set("n", "<leader><Tab>", function() harpoon:list():next() end,
     { desc = "Go to next Harpoon buffer"})
 vim.keymap.set("n", "<leader><S-Tab>", function() harpoon:list():prev() end,
     { desc = "Go to previous Harpoon buffer "})
+
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
