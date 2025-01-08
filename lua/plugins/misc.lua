@@ -2,6 +2,7 @@ return {
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
   'mendes-jv/42sp-header',
+  'github/copilot.vim',
 
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
