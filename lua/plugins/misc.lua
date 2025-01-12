@@ -1,6 +1,6 @@
 return {
   -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
+  -- 'tpope/vim-sleuth',
   'mendes-jv/42sp-header',
   'github/copilot.vim',
 

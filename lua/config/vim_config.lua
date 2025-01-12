@@ -1,17 +1,3 @@
--- Tabstop
--- local create_autocmd = vim.api.nvim_create_autocmd
--- create_autocmd("BufRead", {
---   pattern = "*.cpp,*.hpp,*h",
---   callback = function()
---     vim.cmd("set tabstop=4")
---   end
--- })
-
--- Indentation and formatting
--- vim.opt.tabstop = 4
--- vim.opt.shiftwidth = 4
--- vim.opt.numberwidth = 4
-
 -- Set highlight on search
 vim.o.hlsearch = false
 
@@ -128,6 +114,8 @@ vim.keymap.set("n", "<leader><Tab>", function() harpoon:list():next() end,
     { desc = "Go to next Harpoon buffer"})
 vim.keymap.set("n", "<leader><S-Tab>", function() harpoon:list():prev() end,
     { desc = "Go to previous Harpoon buffer "})
+
+-- Copilot keymaps
 vim.keymap.set('i', '<C-f>', 'copilot#Accept("\\<CR>")', {
   expr = true,
   replace_keycodes = false
