@@ -128,6 +128,10 @@ vim.keymap.set("n", "<leader><Tab>", function() harpoon:list():next() end,
     { desc = "Go to next Harpoon buffer"})
 vim.keymap.set("n", "<leader><S-Tab>", function() harpoon:list():prev() end,
     { desc = "Go to previous Harpoon buffer "})
+vim.keymap.set('i', '<C-f>', 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false
+})
 
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
