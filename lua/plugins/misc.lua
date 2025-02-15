@@ -1,7 +1,6 @@
 return {
   -- Detect tabstop and shiftwidth automatically
   -- 'tpope/vim-sleuth',
-  'mendes-jv/42sp-header',
   'github/copilot.vim',
 
   -- Useful plugin to show you pending keybinds.
@@ -9,10 +8,4 @@ return {
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
-
-  {
-    'andweeb/presence.nvim',
-    opts = {},
-    event = 'UIEnter'
-  },
 }
