@@ -46,8 +46,8 @@ vim.cmd.colorscheme 'catppuccin-frappe'
 -- Kitties
 local signs = { Error = "🙀", Warn = "😾", Hint = "😺", Info = "😸" }
 for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
 vim.api.nvim_set_keymap('n', '<Space>t', ':tabnew<CR>:Telescope find_files<CR>', { noremap = true, silent = true })
@@ -62,11 +62,11 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagn
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
+	-- You can pass additional configuration to telescope to change theme, layout, etc.
+	require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+		winblend = 10,
+		previewer = false,
+	})
 end, { desc = '[/] Fuzzily search in current buffer' })
 
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
@@ -81,45 +81,51 @@ local conf = require("telescope.config").values
 
 harpoon:setup({})
 local function toggle_telescope(harpoon_files)
-    local file_paths = {}
-    for _, item in ipairs(harpoon_files.items) do
-        table.insert(file_paths, item.value)
-    end
+	local file_paths = {}
+	for _, item in ipairs(harpoon_files.items) do
+		table.insert(file_paths, item.value)
+	end
 
-    require("telescope.pickers").new({}, {
-        prompt_title = "Harpoon",
-        finder = require("telescope.finders").new_table({
-            results = file_paths,
-        }),
-        previewer = conf.file_previewer({}),
-        sorter = conf.generic_sorter({}),
-    }):find()
+	require("telescope.pickers").new({}, {
+		prompt_title = "Harpoon",
+		finder = require("telescope.finders").new_table({
+			results = file_paths,
+		}),
+		previewer = conf.file_previewer({}),
+		sorter = conf.generic_sorter({}),
+	}):find()
 end
 
 local function add_file_to_harpoon()
-    require("notify")("Added file to Harpoon")
-    harpoon:list():append()
+	require("notify")("Added file to Harpoon")
+	harpoon:list():append()
 end
 
 local function remove_file_from_harpoon()
-    require("notify")("Removed file to Harpoon")
-    harpoon:list():remove()
+	require("notify")("Removed file to Harpoon")
+	harpoon:list():remove()
 end
 
 vim.keymap.set("n", "<C-e>", function() toggle_telescope(harpoon:list()) end,
-    { desc = "Open harpoon window" })
-vim.keymap.set("n", "<leader>.", add_file_to_harpoon, { desc = "Append file to Harpoon"})
-vim.keymap.set("n", "<leader>,", remove_file_from_harpoon, { desc = "Append file to Harpoon"})
+	{ desc = "Open harpoon window" })
+vim.keymap.set("n", "<leader>.", add_file_to_harpoon, { desc = "Append file to Harpoon" })
+vim.keymap.set("n", "<leader>,", remove_file_from_harpoon, { desc = "Append file to Harpoon" })
 vim.keymap.set("n", "<leader><Tab>", function() harpoon:list():next() end,
-    { desc = "Go to next Harpoon buffer"})
+	{ desc = "Go to next Harpoon buffer" })
 vim.keymap.set("n", "<leader><S-Tab>", function() harpoon:list():prev() end,
-    { desc = "Go to previous Harpoon buffer "})
+	{ desc = "Go to previous Harpoon buffer " })
 
 -- Copilot keymaps
 vim.keymap.set('i', '<C-f>', 'copilot#Accept("\\<CR>")', {
-  expr = true,
-  replace_keycodes = false
+	expr = true,
+	replace_keycodes = false
 })
 
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
+-- If file is C++, tabstop and shiftwidth are set to 2
+if vim.bo.filetype == "cpp" then
+	vim.o.tabstop = 2
+	vim.o.shiftwidth = 2
+else
+	vim.o.tabstop = 4
+	vim.o.shiftwidth = 4
+end
