@@ -52,8 +52,8 @@ local sections = {
     message = { initializing = 'Initializing…', commenced = 'In Progress', completed = 'Completed' },
     max_message_length = 30,
   }},
-  lualine_x = { 'ctime', 'progress' },
-  lualine_y = { 'branch', 'fileformat', 'filetype' },
+  lualine_x = { 'ctime' },
+  lualine_y = { 'branch', 'filetype' },
   lualine_z = {},
 }
 
@@ -79,9 +79,6 @@ return {
     dependencies = {
       -- Clock for lualine
       'archibate/lualine-time',
-
-      -- LSP progress bar
-      'WhoIsSethDaniel/lualine-lsp-progress.nvim',
     }
   }
 }

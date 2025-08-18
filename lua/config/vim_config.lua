@@ -67,8 +67,8 @@ end
 vim.api.nvim_set_keymap('n', '<Space>t', ':tabnew<CR>:Telescope find_files<CR>', { noremap = true, silent = true })
 
 -- LSP Keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+vim.keymap.set('n', '[d', function() vim.diagnostic.jump({count = -1, float = true}) end, { desc = "Go to previous diagnostic message" })
+vim.keymap.set('n', ']d', function() vim.diagnostic.jump({count = 1, float = true}) end, { desc = "Go to next diagnostic message" })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
@@ -110,20 +110,8 @@ local function toggle_telescope(harpoon_files)
     }):find()
 end
 
-local function add_file_to_harpoon()
-    require("notify")("Added file to Harpoon")
-    harpoon:list():append()
-end
-
-local function remove_file_from_harpoon()
-    require("notify")("Removed file to Harpoon")
-    harpoon:list():remove()
-end
-
 vim.keymap.set("n", "<C-e>", function() toggle_telescope(harpoon:list()) end,
     { desc = "Open harpoon window" })
-vim.keymap.set("n", "<leader>.", add_file_to_harpoon, { desc = "Append file to Harpoon"})
-vim.keymap.set("n", "<leader>,", remove_file_from_harpoon, { desc = "Append file to Harpoon"})
 vim.keymap.set("n", "<leader><Tab>", function() harpoon:list():next() end,
     { desc = "Go to next Harpoon buffer"})
 vim.keymap.set("n", "<leader><S-Tab>", function() harpoon:list():prev() end,

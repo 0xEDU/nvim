@@ -2,7 +2,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system {
     'git',
     'clone',
@@ -18,4 +18,3 @@ require('lazy').setup('plugins')
 require('config.vim_config')
 require('config.mason_config')
 require('config.tresitter_config')
--- require('config.nvim-cmp_config')
