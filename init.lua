@@ -19,10 +19,13 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.opt.tabstop = 4
-
 require("lazy").setup("plugins")
 require("keymaps")
+
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.o.clipboard = 'unnamedplus'
+vim.o.undofile = true
 
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
