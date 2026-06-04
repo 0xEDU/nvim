@@ -15,6 +15,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup('plugins')
-require('config.vim_config')
+require('config.global_config')
+require('config.keymaps')
 require('config.lsp_config')
 require('config.tresitter_config')
