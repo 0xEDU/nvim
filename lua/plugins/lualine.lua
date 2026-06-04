@@ -12,7 +12,7 @@ local colors = {
 
 local options = {
   icons_enabled = true,
-  theme = 'catppuccin-macchiato',
+  theme = 'tokyonight-night',
   component_separators = { left = '', right = '' },
   section_separators = { left = '', right = '' },
   disabled_filetypes = {},
@@ -76,9 +76,5 @@ return {
       tabline = {},
       extensions = {},
     },
-    dependencies = {
-      -- Clock for lualine
-      'archibate/lualine-time',
-    }
   }
 }
