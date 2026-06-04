@@ -16,5 +16,5 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup('plugins')
 require('config.vim_config')
-require('config.mason_config')
+require('config.lsp_config')
 require('config.tresitter_config')
