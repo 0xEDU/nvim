@@ -55,7 +55,7 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Colorscheme
-vim.cmd.colorscheme 'catppuccin-frappe'
+vim.cmd.colorscheme 'tokyonight-night'
 
 -- Kitties
 local signs = { Error = "🙀", Warn = "😾", Hint = "😺", Info = "😸" }
@@ -116,6 +116,8 @@ vim.keymap.set("n", "<leader><Tab>", function() harpoon:list():next() end,
     { desc = "Go to next Harpoon buffer"})
 vim.keymap.set("n", "<leader><S-Tab>", function() harpoon:list():prev() end,
     { desc = "Go to previous Harpoon buffer "})
+
+vim.keymap.set("n", "<leader>t", require("nvim-tree.api").tree.toggle, { desc = "Toggle nvim tree" })
 
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
