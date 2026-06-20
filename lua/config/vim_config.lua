@@ -121,6 +121,9 @@ vim.keymap.set('i', '<C-f>', 'copilot#Accept("\\<CR>")', {
 	replace_keycodes = false
 })
 
+-- Neovim tree keymaps
+vim.keymap.set('n', '<leader>t', ':NvimTreeToggle<CR>', { desc = "Toggle file explorer" })
+
 -- If file is C++, tabstop and shiftwidth are set to 2
 if vim.bo.filetype == "cpp" then
 	vim.o.tabstop = 2
